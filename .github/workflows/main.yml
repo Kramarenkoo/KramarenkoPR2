@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    branches: ["**"]
+  pull_request:
     branches: [main]
 
 jobs:
@@ -14,3 +16,7 @@ jobs:
           python-version: "3.12"
       - name: Проверка запуска программы
         run: python -c "import calc; print('Версия', calc.__version__)"
+      - name: Установка pytest
+        run: pip install pytest
+      - name: Запуск тестов
+        run: pytest -v
